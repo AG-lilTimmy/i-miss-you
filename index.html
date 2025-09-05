@@ -62,25 +62,37 @@
   </header>
 
   <!-- Hero -->
-  <main class="relative h-screen flex items-end">
-    <div class="absolute inset-0 bg-center bg-cover" style="background-image:url('images/hero-poster.mp4')"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
-    <div class="relative z-20 max-w-4xl p-8 pb-20">
-      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">birthday month</h1>
-      <p class="max-w-xl text-gray-200/80 mb-6">When I give you a hundred reasons to cry, show me that you have a thousand reasons to smile.</p>
-      <div class="flex gap-4">
-        <button onclick="openTrailer()" class="flex items-center gap-3 bg-white text-black px-5 py-2 rounded text-lg font-semibold shadow-md">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-          Play
-        </button>
-        <button class="flex items-center gap-2 bg-black/50 border border-white/30 px-4 py-2 rounded text-lg">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
-          More Info
-        </button>
-      </div>
-      <div class="mt-6 text-sm text-gray-400">Starring: You &amp; Her • Directed by: You</div>
+<!-- Hero -->
+<main class="relative h-screen flex items-end overflow-hidden">
+  <!-- Video Background -->
+  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+    <source src="images/hero-poster.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Gradient Overlay -->
+  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+
+  <!-- Hero Content -->
+  <div class="relative z-20 max-w-4xl p-8 pb-20">
+    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">birthday month</h1>
+    <p class="max-w-xl text-gray-200/80 mb-6">
+      When I give you a hundred reasons to cry, show me that you have a thousand reasons to smile.
+    </p>
+    <div class="flex gap-4">
+      <button onclick="openTrailer()" class="flex items-center gap-3 bg-white text-black px-5 py-2 rounded text-lg font-semibold shadow-md">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        Play
+      </button>
+      <button class="flex items-center gap-2 bg-black/50 border border-white/30 px-4 py-2 rounded text-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
+        More Info
+      </button>
     </div>
-  </main>
+    <div class="mt-6 text-sm text-gray-400">Starring: You &amp; Her • Directed by: You</div>
+  </div>
+</main>
+
 
   <!-- Trailer Modal -->
   <div id="trailerModal" class="hidden fixed inset-0 z-40 flex items-center justify-center bg-black/80 p-4">
@@ -124,4 +136,5 @@
   </script>
 </body>
 </html>
+
 
