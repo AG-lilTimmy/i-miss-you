@@ -55,16 +55,17 @@
 <!-- Hero -->
 <main class="relative h-screen flex items-end overflow-hidden">
   <!-- Video Background -->
-  <video 
-    autoplay 
-    muted 
-    loop 
-    playsinline 
-    poster="images/hero-poster.jpg"
-    class="absolute inset-0 w-full h-full object-cover">
-    <source src="images/hero-poster.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+ <video 
+  autoplay 
+  muted 
+  loop 
+  playsinline 
+  preload="auto"
+  poster="images/hero-poster.jpg"
+  class="absolute inset-0 w-full h-full object-cover">
+  <source src="hero-poster.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
   <!-- Gradient Overlay -->
   <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
@@ -133,6 +134,7 @@
   </script>
 </body>
 </html>
+
 
 
 
