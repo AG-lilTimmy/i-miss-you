@@ -1,158 +1,126 @@
+<!-- Save this as index.html and open directly in your browser or upload to GitHub Pages -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>I miss you ♡</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --fg: #f5f5f5;
-      --muted: #c9c9c9;
-      --accent: #ff7aa2;
-      --accent2: #8ab4ff;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, sans-serif;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a0f14 100%);
-      color: var(--fg);
-      display: grid;
-      place-items: center;
-      min-height: 100vh;
-      overflow: hidden;
-    }
-
-    .card {
-      backdrop-filter: blur(10px);
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 28px;
-      padding: 2.5rem;
-      text-align: center;
-      box-shadow: 0 0 25px rgba(255,122,162,0.2), 0 0 60px rgba(138,180,255,0.1);
-    }
-
-    h1 {
-      font-family: "Playfair Display", serif;
-      font-size: 2.8rem;
-      margin: 0 0 0.75rem;
-      text-shadow: 0 0 15px rgba(255,122,162,0.3);
-      color: var(--accent);
-    }
-
-    .typing {
-      font-size: 1.25rem;
-      margin-top: 1rem;
-      white-space: nowrap;
-      color: var(--muted);
-    }
-
-    .caret {
-      display: inline-block;
-      width: 1ch;
-      border-right: 2px solid var(--fg);
-      animation: blink 1s steps(1) infinite;
-    }
-    @keyframes blink {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-
-    .btns { margin-top: 1.25rem; display: flex; gap: .75rem; justify-content: center; }
-    .btn {
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      color: var(--fg);
-      border-radius: 999px;
-      padding: .6rem 1.2rem;
-      font-size: .95rem;
-      cursor: pointer;
-      transition: 0.25s;
-    }
-    .btn:hover { background: rgba(255,255,255,0.12); transform: translateY(-1px); }
-
-    .signature {
-      margin-top: 1.25rem;
-      font-family: "Great Vibes", cursive;
-      font-size: 1.7rem;
-      color: #ffd9e7;
-      text-shadow: 0 0 20px rgba(255, 122, 162, 0.4);
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Month</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="card">
-    <h1>I miss you Mazulu</h1>
-    <div class="typing"><span id="typed"></span><span class="caret"></span></div>
-
-    <div class="btns">
-      <button class="btn" id="playMusic">Play Music</button>
-      <button class="btn" id="pauseBtn">Pause Typing</button>
+<body class="bg-black text-white font-sans">
+  <!-- Who's Watching Modal -->
+  <div id="profilesModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-6">
+    <div class="bg-[#111] rounded-lg max-w-3xl w-full p-8 text-center">
+      <h2 class="text-3xl font-bold mb-6">Who's watching?</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6">
+        <button onclick="selectProfile('Baby','images/profile1.jpg')" class="flex flex-col items-center gap-3 hover:scale-105 transition-transform">
+          <div class="w-28 h-28 rounded-lg overflow-hidden border-2 border-white/10">
+            <img src="images/profile1.jpg" alt="Baby" class="w-full h-full object-cover">
+          </div>
+          <div class="text-sm text-gray-200">Baby</div>
+        </button>
+        <button onclick="selectProfile('Favourite','images/profile2.jpg')" class="flex flex-col items-center gap-3 hover:scale-105 transition-transform">
+          <div class="w-28 h-28 rounded-lg overflow-hidden border-2 border-white/10">
+            <img src="images/profile2.jpg" alt="Favourite" class="w-full h-full object-cover">
+          </div>
+          <div class="text-sm text-gray-200">Favourite</div>
+        </button>
+        <button onclick="selectProfile('Love','images/profile3.jpg')" class="flex flex-col items-center gap-3 hover:scale-105 transition-transform">
+          <div class="w-28 h-28 rounded-lg overflow-hidden border-2 border-white/10">
+            <img src="images/profile3.jpg" alt="Love" class="w-full h-full object-cover">
+          </div>
+          <div class="text-sm text-gray-200">Love</div>
+        </button>
+        <button onclick="selectProfile('Partner','images/profile4.jpg')" class="flex flex-col items-center gap-3 hover:scale-105 transition-transform">
+          <div class="w-28 h-28 rounded-lg overflow-hidden border-2 border-white/10">
+            <img src="images/profile4.jpg" alt="Partner" class="w-full h-full object-cover">
+          </div>
+          <div class="text-sm text-gray-200">Partner</div>
+        </button>
+      </div>
+      <div class="text-sm text-gray-400">Manage Profiles</div>
     </div>
-
-    <div class="signature">— always, yours</div>
   </div>
 
-  <!-- Background Music -->
-  <audio id="bgMusic" src="etu.mp3"></audio>
+  <!-- Navbar -->
+  <header class="absolute top-0 left-0 right-0 z-30">
+    <div class="max-w-6xl mx-auto flex items-center justify-between p-4">
+      <div class="flex items-center gap-6">
+        <div class="text-red-600 font-bold tracking-wide text-xl">NETFLIX</div>
+        <nav class="hidden md:flex gap-4 text-sm text-gray-200/70">
+          <button class="hover:text-white">Home</button>
+          <button class="hover:text-white">TV Shows</button>
+          <button class="hover:text-white">Movies</button>
+          <button class="hover:text-white">My List</button>
+        </nav>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="text-sm border border-white/20 px-3 py-1 rounded">Kids</button>
+        <img id="activeAvatar" src="images/profile1.jpg" alt="avatar" class="w-8 h-8 rounded cursor-pointer">
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="relative h-screen flex items-end">
+    <div class="absolute inset-0 bg-center bg-cover" style="background-image:url('images/hero-poster.jpg')"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+    <div class="relative z-20 max-w-4xl p-8 pb-20">
+      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">birthday month</h1>
+      <p class="max-w-xl text-gray-200/80 mb-6">When I give you a hundred reasons to cry, show me that you have a thousand reasons to smile.</p>
+      <div class="flex gap-4">
+        <button onclick="openTrailer()" class="flex items-center gap-3 bg-white text-black px-5 py-2 rounded text-lg font-semibold shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+          Play
+        </button>
+        <button class="flex items-center gap-2 bg-black/50 border border-white/30 px-4 py-2 rounded text-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
+          More Info
+        </button>
+      </div>
+      <div class="mt-6 text-sm text-gray-400">Starring: You &amp; Her • Directed by: You</div>
+    </div>
+  </main>
+
+  <!-- Trailer Modal -->
+  <div id="trailerModal" class="hidden fixed inset-0 z-40 flex items-center justify-center bg-black/80 p-4">
+    <div class="w-full max-w-4xl bg-black rounded overflow-hidden">
+      <div class="relative" style="padding-top:56.25%">
+        <video id="trailerVideo" class="absolute inset-0 w-full h-full" controls></video>
+      </div>
+      <div class="flex justify-end p-3">
+        <button onclick="closeTrailer()" class="px-4 py-2 bg-white text-black rounded">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="absolute bottom-4 left-4 z-20 text-sm text-gray-300">
+    <div id="activeProfile">Not signed in</div>
+  </footer>
 
   <script>
-    const phrases = [
-      "I love you.",
-      "Ive loved you since day one.",
-      "And I'll love you always.",
-      "Forever and Always"
-    ];
-    const el = document.getElementById('typed');
-    const pauseBtn = document.getElementById('pauseBtn');
-    const playMusicBtn = document.getElementById('playMusic');
-    const music = document.getElementById('bgMusic');
-
-    let i = 0, paused = false;
-    const beatTime = 667;
-
-    function typeWords() {
-      if (paused) { requestAnimationFrame(typeWords); return; }
-      const current = phrases[i % phrases.length].split(" ");
-      let wordIndex = 0;
-      function showWord() {
-        if (paused) return;
-        el.textContent = current.slice(0, wordIndex + 1).join(" ");
-        wordIndex++;
-        if (wordIndex < current.length) {
-          setTimeout(showWord, beatTime);
-        } else {
-          setTimeout(() => {
-            i++;
-            el.textContent = "";
-            typeWords();
-          }, beatTime * 3);
-        }
-      }
-      showWord();
+    function selectProfile(name, avatar) {
+      document.getElementById('profilesModal').style.display = 'none';
+      document.getElementById('activeProfile').innerHTML = 'Watching as <strong>' + name + '</strong>';
+      document.getElementById('activeAvatar').src = avatar;
     }
 
-    pauseBtn.addEventListener('click', () => {
-      paused = !paused;
-      pauseBtn.textContent = paused ? 'Resume Typing' : 'Pause Typing';
-      if (!paused) typeWords();
-    });
+    function openTrailer() {
+      const trailer = document.getElementById('trailerModal');
+      const video = document.getElementById('trailerVideo');
+      video.src = 'videos/my-special-video.mp4'; // replace with your own video path
+      trailer.classList.remove('hidden');
+      video.play();
+    }
 
-    playMusicBtn.addEventListener('click', () => {
-      music.play();
-      playMusicBtn.style.display = 'none';
-      typeWords();
-    });
+    function closeTrailer() {
+      const trailer = document.getElementById('trailerModal');
+      const video = document.getElementById('trailerVideo');
+      trailer.classList.add('hidden');
+      video.pause();
+      video.src = '';
+    }
   </script>
 </body>
 </html>
-
-
-
-
-
