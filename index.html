@@ -65,7 +65,13 @@
 <!-- Hero -->
 <main class="relative h-screen flex items-end overflow-hidden">
   <!-- Video Background -->
-  <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover">
+  <video 
+    autoplay 
+    muted 
+    loop 
+    playsinline 
+    poster="images/hero-poster.jpg"
+    class="absolute inset-0 w-full h-full object-cover">
     <source src="images/hero-poster.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
@@ -79,7 +85,7 @@
     <p class="max-w-xl text-gray-200/80 mb-6">
       When I give you a hundred reasons to cry, show me that you have a thousand reasons to smile.
     </p>
-    <div class="flex gap-4">
+    <div class="flex gap-4 flex-wrap">
       <button onclick="openTrailer()" class="flex items-center gap-3 bg-white text-black px-5 py-2 rounded text-lg font-semibold shadow-md">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
         Play
@@ -92,6 +98,7 @@
     <div class="mt-6 text-sm text-gray-400">Starring: You &amp; Her • Directed by: You</div>
   </div>
 </main>
+
 
 
   <!-- Trailer Modal -->
@@ -136,5 +143,6 @@
   </script>
 </body>
 </html>
+
 
 
