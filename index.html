@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Birthday Month</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Plyr for Netflix-style video player -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
 </head>
 <body class="bg-black text-white font-sans">
   <!-- Who's Watching Modal -->
@@ -13,7 +17,6 @@
     <div class="bg-[#111] rounded-lg max-w-3xl w-full p-8 text-center">
       <h2 class="text-3xl font-bold mb-6">Who's watching?</h2>
       <div class="grid grid-cols-2 gap-6 mb-6 justify-center">
-      
         <button onclick="selectProfile('Una','images/profile2.jpg')" class="flex flex-col items-center gap-3 hover:scale-105 transition-transform">
           <div class="w-28 h-28 rounded-lg overflow-hidden border-2 border-white/10">
             <img src="images/profile2.jpg" alt="Favourite" class="w-full h-full object-cover">
@@ -26,7 +29,6 @@
           </div>
           <div class="text-sm text-gray-200">Love</div>
         </button>
-        
       </div>
       <div class="text-sm text-gray-400">Manage Profiles</div>
     </div>
@@ -52,54 +54,56 @@
   </header>
 
   <!-- Hero -->
-<!-- Hero -->
-<main class="relative h-screen flex items-end overflow-hidden">
-  <!-- Video Background -->
- <video 
-  autoplay 
-  muted 
-  loop 
-  playsinline 
-  preload="auto"
-  poster="images/hero-poster.jpg"
-  class="absolute inset-0 w-full h-full object-cover">
-  <source src="hero-poster.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+  <main class="relative h-screen flex items-end overflow-hidden">
+    <!-- Video Background -->
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      preload="auto"
+      poster="images/hero-poster.jpg"
+      class="absolute inset-0 w-full h-full object-cover">
+      <source src="hero-poster.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
-  <!-- Gradient Overlay -->
-  <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent"></div>
 
-  <!-- Hero Content -->
-  <div class="relative z-20 max-w-4xl p-8 pb-20">
-    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">birthday month</h1>
-    <p class="max-w-xl text-gray-200/80 mb-6">
-      To whom I love most. Happy birthday love, the day is yours.Enjoy it
-    </p>
-    <div class="flex gap-4 flex-wrap">
-      <button onclick="openTrailer()" class="flex items-center gap-3 bg-white text-black px-5 py-2 rounded text-lg font-semibold shadow-md">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-        Play
-      </button>
-      <button class="flex items-center gap-2 bg-black/50 border border-white/30 px-4 py-2 rounded text-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
-        More Info
-      </button>
+    <!-- Hero Content -->
+    <div class="relative z-20 max-w-4xl p-8 pb-20">
+      <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-4">birthday month</h1>
+      <p class="max-w-xl text-gray-200/80 mb-6">
+        To whom I love most. Happy birthday love, the day is yours. Enjoy it
+      </p>
+      <div class="flex gap-4 flex-wrap">
+        <button onclick="openTrailer()" class="flex items-center gap-3 bg-white text-black px-5 py-2 rounded text-lg font-semibold shadow-md">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+          Play
+        </button>
+        <button class="flex items-center gap-2 bg-black/50 border border-white/30 px-4 py-2 rounded text-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5"><path fill="currentColor" d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10z"/></svg>
+          More Info
+        </button>
+      </div>
+      <div class="mt-6 text-sm text-gray-400">Starring: Me &amp; You • Directed by: Nele</div>
     </div>
-    <div class="mt-6 text-sm text-gray-400">Starring: Me &amp; You • Directed by: Nele</div>
-  </div>
-</main>
-
-
+  </main>
 
   <!-- Trailer Modal -->
-  <div id="trailerModal" class="hidden fixed inset-0 z-40 flex items-center justify-center bg-black/80 p-4">
-    <div class="w-full max-w-4xl bg-black rounded overflow-hidden">
+  <div id="trailerModal" class="fixed inset-0 z-40 flex items-center justify-center bg-black/90 opacity-0 pointer-events-none transition-opacity duration-500">
+    <div class="relative w-full max-w-5xl bg-black rounded overflow-hidden shadow-2xl">
+      <!-- Close Button -->
+      <button onclick="closeTrailer()" class="absolute top-3 right-3 bg-black/60 hover:bg-black text-white rounded-full w-10 h-10 flex items-center justify-center z-50">
+        ✕
+      </button>
+
+      <!-- Video Player -->
       <div class="relative" style="padding-top:56.25%">
-        <video id="trailerVideo" class="absolute inset-0 w-full h-full" controls></video>
-      </div>
-      <div class="flex justify-end p-3">
-        <button onclick="closeTrailer()" class="px-4 py-2 bg-white text-black rounded">Close</button>
+        <video id="trailerVideo" class="plyr absolute inset-0 w-full h-full" playsinline controls>
+          <source src="" type="video/mp4" />
+        </video>
       </div>
     </div>
   </div>
@@ -109,7 +113,14 @@
     <div id="activeProfile">Not signed in</div>
   </footer>
 
+  <!-- Scripts -->
   <script>
+    // Initialize Plyr
+    const player = new Plyr('#trailerVideo', {
+      controls: ['play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+      autoplay: false
+    });
+
     function selectProfile(name, avatar) {
       document.getElementById('profilesModal').style.display = 'none';
       document.getElementById('activeProfile').innerHTML = 'Watching as <strong>' + name + '</strong>';
@@ -118,25 +129,23 @@
 
     function openTrailer() {
       const trailer = document.getElementById('trailerModal');
-      const video = document.getElementById('trailerVideo');
-      video.src = 'my-special-video.mp4'; // replace with your own video path
-      trailer.classList.remove('hidden');
-      video.play();
+      trailer.classList.remove('pointer-events-none');
+      trailer.classList.remove('opacity-0');
+      trailer.classList.add('opacity-100');
+      player.source = {
+        type: 'video',
+        sources: [{ src: 'my-special-video.mp4', type: 'video/mp4' }]
+      };
+      player.play();
     }
 
     function closeTrailer() {
       const trailer = document.getElementById('trailerModal');
-      const video = document.getElementById('trailerVideo');
-      trailer.classList.add('hidden');
-      video.pause();
-      video.src = '';
+      trailer.classList.remove('opacity-100');
+      trailer.classList.add('opacity-0');
+      trailer.classList.add('pointer-events-none');
+      player.pause();
     }
   </script>
 </body>
 </html>
-
-
-
-
-
-
